@@ -1,13 +1,41 @@
+class TypeError < StandardError; end
+
 def current_time
   Time.new.strftime('%I:%M %p')
 end
 
-def say_hello(name, health_score = 100)
-  "I'm #{name.capitalize} with a health of #{health_score} as of " \
-  "#{current_time}."
+# Player class
+class Player
+  def initialize(name, health_score = 100)
+    fail TypeError unless name.is_a? String
+    fail TypeError unless health_score.is_a? Integer
+    @name = name.capitalize
+    @health_score = health_score
+  end
+
+  def blam!
+    @health_score -= rand(11)
+    puts "#{@name} was blammed! Health score has decreased to #{@health_score}."
+  end
+
+  def w00t!
+    @health_score += rand(16)
+    puts "#{@name} was w00ted! Health score has increased to #{@health_score}."
+  end
+
+  def to_s
+    "#{@name} has a health of #{@health_score} as of today at" \
+    " #{Time.new.strftime('%I:%M %p')}"
+  end
 end
 
-puts say_hello('larry', 60)
-puts say_hello('curly', 125)
-puts say_hello('moe')
-puts say_hello('shemp', 90)
+larry = Player.new('larry', 60)
+curly = Player.new('curly', 125)
+moe = Player.new('moe')
+shemp = Player.new('shemp', 90)
+puts larry
+puts curly
+puts moe
+puts shemp
+
+curly.w00t!
