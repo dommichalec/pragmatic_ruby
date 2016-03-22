@@ -36,14 +36,48 @@ class Player
   # practice with the Time class
   def to_s
     "#{@name} has a total score of #{total_score} as of today at" \
-    " #{Time.new.strftime('%I:%M %p')}"
+    " #{Time.new.strftime('%I:%M %p')} and"
+  end
+end
+
+# Player List container class
+class Game
+  attr_reader :name
+  def initialize(name)
+    @name = name
+    @roster = []
+  end
+
+  def add(player)
+    @roster << player
+    puts "#{player} was added to the roster!"
+  end
+
+  def remove(player)
+    @roster.delete(player)
+  end
+
+  def play
+    puts "#{@roster.size} players have showed up to play today."
+    @roster.each do |player|
+      2.times do
+        player.blam!
+        player.w00t!
+      end
+    end
+    p @roster
   end
 end
 
 larry = Player.new('larry', 60)
 curly = Player.new('curly', 125)
 moe = Player.new('moe')
-shemp = Player.new('shemp', 90)
+# uncomment shemp and add to the game at will
+# shemp = Player.new('shemp', 90)
 
-larry.name = 'Lawrence'
-puts larry
+game = Game.new('Knuckleheads')
+game.add(larry)
+game.add(curly)
+game.add(moe)
+
+game.play
