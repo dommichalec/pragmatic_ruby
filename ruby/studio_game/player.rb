@@ -39,3 +39,14 @@ class Player
     " #{Time.new.strftime('%I:%M %p')} and"
   end
 end
+
+# execute if this file is explicitly ran
+if __FILE__ == $PROGRAM_NAME
+  player = Player.new('moe')
+  puts player.name
+  puts player.health
+  player.w00t
+  puts player.health
+  player.blam
+  puts player.health
+end
