@@ -18,7 +18,6 @@ class Game
   end
 
   def play
-    puts "#{@roster.size} players have showed up to play today."
     @roster.each do |player|
       2.times do
         player.blam!

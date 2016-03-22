@@ -44,9 +44,9 @@ end
 if __FILE__ == $PROGRAM_NAME
   player = Player.new('moe')
   puts player.name
-  puts player.health
-  player.w00t
-  puts player.health
-  player.blam
-  puts player.health
+  puts player.health_score
+  player.w00t!
+  puts player.health_score
+  player.blam!
+  puts player.health_score
 end
