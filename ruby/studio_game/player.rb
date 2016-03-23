@@ -14,7 +14,7 @@ class Player
   end
 
   def name=(new_name)
-    @name = new_name.capitalize
+    @name = new_name.capitalize!
   end
 
   def total_score
@@ -23,13 +23,13 @@ class Player
 
   # mutates the health_score down by a random number between 1 and 10
   def blam!
-    @health_score -= rand(11)
+    @health_score -= 10
     puts "#{@name} was blammed! Health score has decreased to #{@health_score}."
   end
 
   # mutates the health_score up by a random number between 1 and 15
   def w00t!
-    @health_score += rand(16)
+    @health_score += 5
     puts "#{@name} was w00ted! Health score has increased to #{@health_score}."
   end
 
