@@ -28,7 +28,7 @@ describe Player do
   end
 
   it 'should be able to change player name on the fly' do
-    expect(@player.name ='lawrence').to eq('Lawrence')
+    expect(@player.name= 'lawrence').to eq('Lawrence')
   end
 
   context do
@@ -38,6 +38,26 @@ describe Player do
 
     it 'should have a default health score of 100' do
       expect(@player.health_score).to eq(100)
+    end
+  end
+
+  context 'with a health score greater than 100' do
+    before do
+      @player = Player.new('larry', 101)
+    end
+
+    it 'should return true for a strong player' do
+      expect(@player.strong?).to eq(true)
+    end
+  end
+
+  context 'with a health score less than 100' do
+    before do
+      @player = Player.new('larry', 99)
+    end
+
+    it 'should return false for a wimpy player' do
+      expect(@player.strong?).to eq(false)
     end
   end
 end

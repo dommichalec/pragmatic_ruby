@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'die'
 
 # Game container class
 class Game
@@ -19,11 +20,16 @@ class Game
 
   def play
     @roster.each do |player|
-      2.times do
-        player.blam!
-        player.w00t!
-      end
+    die = Die.new
+    case die.roll
+    when 1..2
+      player.blam!
+    when 3..4
+      puts "#{player.name} was skipped."
+    else
+      player.w00t!
     end
-    p @roster
+    puts player
+    end
   end
 end

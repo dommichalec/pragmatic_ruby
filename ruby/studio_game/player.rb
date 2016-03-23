@@ -1,5 +1,3 @@
-class TypeError < StandardError; end
-
 # Player class
 class Player
   attr_accessor :name
@@ -7,8 +5,6 @@ class Player
 
   # constructor
   def initialize(name, health_score = 100)
-    fail TypeError unless name.is_a? String
-    fail TypeError unless health_score.is_a? Integer
     @name = name.capitalize
     @health_score = health_score
   end
@@ -21,6 +17,10 @@ class Player
     @health_score + @name.size
   end
 
+  def strong?
+    @health_score >= 100
+  end
+
   # mutates the health_score down by a random number between 1 and 10
   def blam!
     @health_score -= 10
@@ -29,7 +29,7 @@ class Player
 
   # mutates the health_score up by a random number between 1 and 15
   def w00t!
-    @health_score += 5
+    @health_score += 15
     puts "#{@name} was w00ted! Health score has increased to #{@health_score}."
   end
 
