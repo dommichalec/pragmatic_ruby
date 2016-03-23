@@ -2,7 +2,7 @@ require_relative 'player'
 
 # Game container class
 class Game
-  attr_reader :name
+  attr_reader :name, :roster
   def initialize(name)
     @name = name
     @roster = []
