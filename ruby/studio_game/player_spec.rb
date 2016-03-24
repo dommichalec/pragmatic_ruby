@@ -13,9 +13,9 @@ describe Player do
     expect(@player.health_score).to eq(150)
   end
 
-  it 'should increase health score by 5 when w00ted' do
+  it 'should increase health score by 15 when w00ted' do
     @player.w00t!
-    expect(@player.health_score).to eq(155)
+    expect(@player.health_score).to eq(165)
   end
 
   it 'should decrease health score by 10 when blammed' do
@@ -25,10 +25,6 @@ describe Player do
 
   it 'should have a total score of health score plus name size' do
     expect(@player.total_score).to eq(155)
-  end
-
-  it 'should be able to change player name on the fly' do
-    expect(@player.name= 'lawrence').to eq('Lawrence')
   end
 
   context do
