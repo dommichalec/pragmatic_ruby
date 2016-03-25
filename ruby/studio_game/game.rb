@@ -14,10 +14,6 @@ class Game
     puts "#{player} was added to the roster!"
   end
 
-  def remove(player)
-    @roster.delete(player)
-  end
-
   def play
     @roster.each do |player|
       die = Die.new
