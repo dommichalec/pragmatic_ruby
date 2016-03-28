@@ -1,12 +1,13 @@
 # Player class
 class Player
-  attr_accessor :name
+  attr_accessor :name, :weapons
   attr_reader :health_score
 
   # constructor
   def initialize(name, health_score = 100)
     @name = name.capitalize
     @health_score = health_score
+    @weapons = {}
   end
 
   def name=(new_name)
@@ -18,7 +19,7 @@ class Player
   end
 
   def strong?
-    @health_score >= 100
+    @health_score >= 150
   end
 
   # mutates the health_score down by a random number between 1 and 10
@@ -37,6 +38,19 @@ class Player
   def to_s
     "#{@name} has a total score of #{total_score} as of today at" \
     " #{Time.new.strftime('%I:%M %p')} and"
+  end
+
+  def take_turn(rounds)
+    1.upto(rounds) do |round|
+      3.times do
+        sleep 1
+        print '...'
+      end
+      puts "\nRound #{round}"
+      @roster.each do |player|
+        GameTurn.take_turn(player)
+      end
+    end
   end
 end
 
