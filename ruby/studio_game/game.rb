@@ -16,6 +16,14 @@ class Game
     puts "#{player} was added to the roster!"
   end
 
+  def load_players(from_file)
+    File.readlines(from_file) do |line|
+      name, health = line.split(',')
+      player = Player.new(name, Integer(health))
+      add(player)
+    end
+  end
+
   def print_stats
     strong_players, wimpy_players = @roster.partition(&:strong?)
     puts "\nGame Stats: "

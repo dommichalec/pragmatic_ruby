@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'treasure_trove'
 
 describe Player do
   before do
@@ -23,8 +24,21 @@ describe Player do
     expect(@player.health_score).to eq(140)
   end
 
-  it 'should have a total score of health score plus name size' do
-    expect(@player.total_score).to eq(155)
+  it "computes a score as the sum of its health and points" do
+  @player.found_treasure(Treasure.new(:hammer, 50))
+  @player.found_treasure(Treasure.new(:hammer, 50))
+
+  expect(@player.score).to eq(200)
+  end
+
+  it 'computes points as the sum of all treasure points' do
+    expect(@player.points).to eq(0)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    expect(@player.points).to eq(50)
+    @player.found_treasure(Treasure.new(:crowbar, 400))
+    expect(@player.points).to eq(450)
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    expect(@player.points).to eq(500)
   end
 
   context do

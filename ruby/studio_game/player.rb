@@ -7,19 +7,29 @@ class Player
   def initialize(name, health_score = 100)
     @name = name.capitalize
     @health_score = health_score
-    @weapons = {}
+    @found_treasure = Hash.new(0) # 0 is set to the default value
   end
 
   def name=(new_name)
     @name = new_name.capitalize!
   end
 
+  def found(treasure)
+    @found_treasure[treasure.name] += treasure.points
+    puts "\n#{@name} found a #{treasure.name} worth #{treasure.points}."
+    puts "#{@found_treasure}"
+  end
+
+  def points
+    @found_treasure.values.reduce(0, :+)
+  end
+
   def total_score
-    @health_score + @name.size
+    @health_score + points
   end
 
   def strong?
-    @health_score >= 150
+    @health_score >= 100
   end
 
   # mutates the health_score down by a random number between 1 and 10
@@ -36,8 +46,7 @@ class Player
 
   # practice with the Time class
   def to_s
-    "#{@name} has a total score of #{total_score} as of today at" \
-    " #{Time.new.strftime('%I:%M %p')} and"
+    "#{@name} with a score of #{@health_score}"
   end
 
   def take_turn(rounds)
@@ -51,6 +60,9 @@ class Player
         GameTurn.take_turn(player)
       end
     end
+
+    treasure = TreasureTrove.random
+    player.found(treasure)
   end
 end
 

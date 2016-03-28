@@ -35,4 +35,12 @@ describe Game do
       expect(@player.health_score).to eq(@initial_health - (2 * 10))
     end
   end
+
+  it "assigns a treasure for points during a player's turn" do
+    game = Game.new("Knuckleheads")
+    player = Player.new("moe")
+    game.add(player)
+    game.play(1)
+    expect(player.points).not_to be_zero
+  end
 end
